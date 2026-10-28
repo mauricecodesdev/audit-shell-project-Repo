@@ -1,5 +1,25 @@
 #!/bin/bash
 
+#Repertoires du script
+DIR=$(cd "$(dirname "$0")" && pwd)
+LOG="$DIR/logs/audit.log"
+DATE=$(date '+%Y-%m-%d_%H-%M-%S')
+RAPPORT="$DIR/reports/audit_$DATE.txt"
+
+journaliser(){
+    echo "[$(date '+%F %T')] $1" >> "$LOG"
+}
+
+ecrire_entete() {
+    {
+        echo "RAPPORT D'AUDIT"
+        echo "Date        : $(date '+%F %T')"
+        echo "Machine     : $(hostname)"
+        echo "Utilisateur : $(whoami)"
+        echo " "
+    } > "$RAPPORT"
+}
+
 afficher_aide() {
     echo "Usage : $0 OPTION"
     echo "--system   audit du système"
@@ -25,6 +45,10 @@ if [ $# -ne 1 ]; then
     afficher_aide
     exit 1
 fi
+
+
+journaliser "Execution du script"
+ecrire_entete
 
 case "$1" in
     --system)
