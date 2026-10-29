@@ -64,8 +64,8 @@ audit_reseau() {
        echo "Connectivité vers $cible : Échec" >> "$RAPPORT"
        NB_ERREUR=$((NB_ERREUR + 1))
    fi
-done < "$DIR/config/targets.conf"
-journaliser "Tests réseau terminés. Résultats : $NB_OK OK, $NB_ERREUR Échec"
+   done < "$DIR/config/targets.conf"
+   journaliser "Tests réseau terminés. Résultats : $NB_OK OK, $NB_ERREUR Échec"
 
 }
 
