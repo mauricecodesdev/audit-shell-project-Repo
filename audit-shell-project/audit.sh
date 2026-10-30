@@ -71,6 +71,21 @@ audit_reseau() {
 
 audit_securite() {
     echo "Audit sécurité"
+    {
+        echo "[3] Analyse de sécurité"
+        echo "Comptes avec un shell bash :"
+        grep 'bash$' /etc/passwd | cut -d: -f1
+        echo
+        echo "Ports en écoute :"
+        ss -tuln
+        echo
+        echo "Fichiers en mode 777 dans $HOME :"
+        find "$HOME" -type f -perm 0777 2>/dev/null
+        echo
+        echo "(indicateurs à examiner, pas une preuve de vulnérabilité)"
+        echo
+    } >> "$RAPPORT"
+    journaliser "Audit sécurité terminé"
 }
 
 if [ $# -ne 1 ]; then
