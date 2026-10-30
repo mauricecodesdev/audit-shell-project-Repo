@@ -42,7 +42,7 @@ Les résultats sont enregistrés dans un rapport horodaté, archivés automatiqu
 
 # Audit système
 
-./audit.sh --system
+    ./audit.sh --system
 
 Affiche des informations sur le système :
     - la version du noyau 
