@@ -1,0 +1,26 @@
+RAPPORT D'AUDIT
+Date        : 2026-10-30 13:36:07
+Machine     : DodoLaptop
+Utilisateur : dodo
+ 
+[1] Informations système
+Noyau : 6.18.54.1-microsoft-standard-WSL2
+Démarrée : up 3 hours, 41 minutes
+
+Mémoire :
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       1.4Gi        13Gi       4.2Mi       510Mi        14Gi
+Swap:          4.0Gi          0B       4.0Gi
+
+Disque racine :
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sdd       1007G  2.5G  954G   1% /
+
+Les 5 processus les plus gourmands :
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+dodo       10481  3.4  3.8 19727908 622640 pts/0 Sl+  12:17   2:43 /home/dodo/.vscode-server/bin/e646868227c3e3a9e3f24277c8c7220be42c0be7/node --dns-result-order=ipv4first /home/dodo/.vscode-server/bin/e646868227c3e3a9e3f24277c8c7220be42c0be7/out/bootstrap-fork --type=extensionHost --transformURIs --useHostProxy=true
+dodo       10380  0.2  0.9 1785748 148332 pts/0  Rl+  12:17   0:12 /home/dodo/.vscode-server/bin/e646868227c3e3a9e3f24277c8c7220be42c0be7/node /home/dodo/.vscode-server/bin/e646868227c3e3a9e3f24277c8c7220be42c0be7/out/server-main.js --host=127.0.0.1 --port=0 --connection-token=1665775252-1693669849-3210888056-908808387 --use-host-proxy --without-browser-env-var --disable-websocket-compression --accept-server-license-terms --telemetry-level=all
+dodo       10603  0.2  0.4 1469740 79268 pts/0   Sl+  12:17   0:10 /home/dodo/.vscode-server/bin/e646868227c3e3a9e3f24277c8c7220be42c0be7/node /home/dodo/.vscode-server/bin/e646868227c3e3a9e3f24277c8c7220be42c0be7/out/bootstrap-fork --type=ptyHost --logsPath /home/dodo/.vscode-server/data/logs/20261030T120542
+dodo       17609  0.1  0.3 1409924 59860 pts/4   Ssl+ 12:57   0:02 /home/dodo/.vscode-server/bin/e646868227c3e3a9e3f24277c8c7220be42c0be7/node -e const net = require('net'); process.stdin.pause(); const client = net.createConnection({ host: '127.0.0.1', port: 37765 }, () => { client.pipe(process.stdout); process.stdin.pipe(client); }); client.on('close', function (hadError) { console.error(hadError ? 'Remote close with error' : 'Remote close'); process.exit(hadError ? 1 : 0); }); client.on('error', function (err) { process.stderr.write(err && (err.stack || err.message) || String(err)); });
+dodo       10482  0.0  0.9 18554292 154424 pts/0 Sl+  12:17   0:03 /home/dodo/.vscode-server/bin/e646868227c3e3a9e3f24277c8c7220be42c0be7/node /home/dodo/.vscode-server/bin/e646868227c3e3a9e3f24277c8c7220be42c0be7/out/bootstrap-fork --type=agentHost --logsPath /home/dodo/.vscode-server/data/logs/20261030T120542 --user-data-dir /home/dodo/.vscode-server/data --telemetry-level all
+

@@ -1,0 +1,66 @@
+RAPPORT D'AUDIT
+Date        : 2026-10-30 13:38:09
+Machine     : DodoLaptop
+Utilisateur : dodo
+ 
+[1] Informations système
+Noyau : 6.18.54.1-microsoft-standard-WSL2
+Démarrée : up 3 hours, 43 minutes
+
+Mémoire :
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       1.4Gi        13Gi       4.2Mi       518Mi        14Gi
+Swap:          4.0Gi          0B       4.0Gi
+
+Disque racine :
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sdd       1007G  2.5G  954G   1% /
+
+Les 5 processus les plus gourmands :
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+dodo       25046 16.6  0.0   5084  3732 pts/6    S+   13:38   0:00 /bin/bash ./audit.sh --all
+dodo       10481  3.4  3.8 19725124 620512 pts/0 Sl+  12:17   2:48 /home/dodo/.vscode-server/bin/e646868227c3e3a9e3f24277c8c7220be42c0be7/node --dns-result-order=ipv4first /home/dodo/.vscode-server/bin/e646868227c3e3a9e3f24277c8c7220be42c0be7/out/bootstrap-fork --type=extensionHost --transformURIs --useHostProxy=true
+dodo       10380  0.2  0.9 1786004 148588 pts/0  Sl+  12:17   0:12 /home/dodo/.vscode-server/bin/e646868227c3e3a9e3f24277c8c7220be42c0be7/node /home/dodo/.vscode-server/bin/e646868227c3e3a9e3f24277c8c7220be42c0be7/out/server-main.js --host=127.0.0.1 --port=0 --connection-token=1665775252-1693669849-3210888056-908808387 --use-host-proxy --without-browser-env-var --disable-websocket-compression --accept-server-license-terms --telemetry-level=all
+dodo       10603  0.2  0.4 1469740 79044 pts/0   Sl+  12:17   0:11 /home/dodo/.vscode-server/bin/e646868227c3e3a9e3f24277c8c7220be42c0be7/node /home/dodo/.vscode-server/bin/e646868227c3e3a9e3f24277c8c7220be42c0be7/out/bootstrap-fork --type=ptyHost --logsPath /home/dodo/.vscode-server/data/logs/20261030T120542
+dodo       17609  0.1  0.3 1410188 60712 pts/4   Ssl+ 12:57   0:03 /home/dodo/.vscode-server/bin/e646868227c3e3a9e3f24277c8c7220be42c0be7/node -e const net = require('net'); process.stdin.pause(); const client = net.createConnection({ host: '127.0.0.1', port: 37765 }, () => { client.pipe(process.stdout); process.stdin.pipe(client); }); client.on('close', function (hadError) { console.error(hadError ? 'Remote close with error' : 'Remote close'); process.exit(hadError ? 1 : 0); }); client.on('error', function (err) { process.stderr.write(err && (err.stack || err.message) || String(err)); });
+
+[2] Tests réseau
+PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.125 ms
+
+--- 127.0.0.1 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.125/0.125/0.125/0.000 ms
+Connectivité vers 127.0.0.1 : OK
+PING 192.0.2.10 (192.0.2.10) 56(84) bytes of data.
+
+--- 192.0.2.10 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+Connectivité vers 192.0.2.10 : Échec
+[3] Analyse de sécurité
+Comptes avec un shell bash :
+root
+dodo
+
+Ports en écoute :
+Netid State  Recv-Q Send-Q  Local Address:Port  Peer Address:Port
+udp   UNCONN 0      0          127.0.0.54:53         0.0.0.0:*   
+udp   UNCONN 0      0       127.0.0.53%lo:53         0.0.0.0:*   
+udp   UNCONN 0      0      10.255.255.254:53         0.0.0.0:*   
+udp   UNCONN 0      0           127.0.0.1:323        0.0.0.0:*   
+udp   UNCONN 0      0           127.0.0.1:323        0.0.0.0:*   
+udp   UNCONN 0      0               [::1]:323           [::]:*   
+udp   UNCONN 0      0               [::1]:323           [::]:*   
+tcp   LISTEN 0      4096       127.0.0.54:53         0.0.0.0:*   
+tcp   LISTEN 0      511         127.0.0.1:37765      0.0.0.0:*   
+tcp   LISTEN 0      511         127.0.0.1:34901      0.0.0.0:*   
+tcp   LISTEN 0      1000   10.255.255.254:53         0.0.0.0:*   
+tcp   LISTEN 0      4096    127.0.0.53%lo:53         0.0.0.0:*   
+
+Fichiers en mode 777 dans /home/dodo :
+/home/dodo/FichiersInfos
+/home/dodo/FichiersInfos.txt
+
+(indicateurs à examiner, pas une preuve de vulnérabilité)
+
