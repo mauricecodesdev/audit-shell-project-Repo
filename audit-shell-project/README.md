@@ -17,8 +17,8 @@ Les résultats sont enregistrés dans un rapport horodaté, archivés automatiqu
 
 1. Cloner le dépôt github créé ou alors utilisé le dossier compressé zip :
 
-    git clone <url-du-depot>
-    cd audit-shell-project
+        git clone <url-du-depot>
+        cd audit-shell-project
 
 2. Rendre le script exécutable :
 
