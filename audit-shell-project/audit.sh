@@ -75,6 +75,11 @@ audit_systeme() {
 audit_reseau() {
     echo "Audit réseau"
     echo
+    if [ ! -f "$DIR/config/targets.conf" ]; then
+        echo "Erreur : fichier targets.conf introuvable"
+        journaliser "Erreur : fichier targets.conf introuvable"
+        exit 2
+    fi
     echo "[2] Tests réseau" >> "$RAPPORT"
     while read -r cible
     do
