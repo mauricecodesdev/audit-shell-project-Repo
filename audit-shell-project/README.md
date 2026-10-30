@@ -22,7 +22,7 @@ Les résultats sont enregistrés dans un rapport horodaté, archivés automatiqu
 
 2. Rendre le script exécutable :
 
-    chmod +x audit.sh
+        chmod +x audit.sh
 
 3. Vérifier que l'arborescence du projet est présente :
 
