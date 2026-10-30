@@ -27,15 +27,15 @@ Les résultats sont enregistrés dans un rapport horodaté, archivés automatiqu
 3. Vérifier que l'arborescence du projet est présente :
 
    ```text
-        audit-shell-project/
-        ├── audit.sh
-        ├── config/
-        │   └── targets.conf
-        ├── logs/
-        ├── reports/
-        ├── archives/
-        ├── README.md
-        └── tests.md
+    audit-shell-project/
+    ├── audit.sh
+    ├── config/
+    │   └── targets.conf
+    ├── logs/
+    ├── reports/
+    ├── archives/
+    ├── README.md
+    └── tests.md
     ```
 
 # Options disponibles
