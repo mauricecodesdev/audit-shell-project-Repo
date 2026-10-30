@@ -25,6 +25,8 @@ Les résultats sont enregistrés dans un rapport horodaté, archivés automatiqu
     chmod +x audit.sh
 
 3. Vérifier que l'arborescence du projet est présente :
+
+   ```text
         audit-shell-project/
         ├── audit.sh
         ├── config/
@@ -34,6 +36,7 @@ Les résultats sont enregistrés dans un rapport horodaté, archivés automatiqu
         ├── archives/
         ├── README.md
         └── tests.md
+    ```
 
 # Options disponibles
 
