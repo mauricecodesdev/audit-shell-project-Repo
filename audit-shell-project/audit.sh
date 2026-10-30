@@ -5,6 +5,8 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 LOG="$DIR/logs/audit.log"
 DATE=$(date '+%Y-%m-%d_%H-%M-%S')
 RAPPORT="$DIR/reports/audit_$DATE.txt"
+NB_OK=0
+NB_ERREUR=0
 
 journaliser(){
     echo "[$(date '+%F %T')] $1" >> "$LOG"
@@ -18,6 +20,27 @@ ecrire_entete() {
         echo "Utilisateur : $(whoami)"
         echo " "
     } > "$RAPPORT"
+}
+
+ecrire_resume() {
+    {
+        echo "[4] Résumé"
+        echo "Tests OK : $NB_OK"
+        echo "Tests en échec : $NB_ERREUR"
+        echo
+    } >> "$RAPPORT"
+
+    journaliser "Résumé ajouté au rapport"
+}
+
+archiver_rapport() {
+    archive="$DIR/archives/audit_$DATE.tar.gz"
+
+    tar -czf "$archive" \
+        -C "$DIR/reports" \
+        "$(basename "$RAPPORT")"
+
+    journaliser "Archive créée : $(basename "$archive")"
 }
 
 afficher_aide() {
@@ -53,8 +76,6 @@ audit_reseau() {
     echo "Audit réseau"
     echo
     echo "[2] Tests réseau" >> "$RAPPORT"
-    NB_OK=0
-    NB_ERREUR=0
     while read -r cible
     do
        [ -z "$cible" ] && continue
@@ -99,25 +120,29 @@ fi
 
 
 journaliser "Execution du script"
-ecrire_entete
 
 case "$1" in
     --system)
+        ecrire_entete
         audit_systeme
         ;;
     --network)
+        ecrire_entete
         audit_reseau
         ;;
     --security)
+        ecrire_entete
         audit_securite
         ;;
     --all)
+        ecrire_entete
         audit_systeme
         audit_reseau
         audit_securite
         ;;
     --help)
         afficher_aide
+        exit 0;
         ;;
     *)
         echo "Option inconnue : $1"
@@ -126,3 +151,10 @@ case "$1" in
         ;;
 esac
 
+ecrire_resume
+archiver_rapport
+echo
+echo "Rapport créé : $RAPPORT"
+echo "Tests OK : $NB_OK"
+echo "Tests en échec : $NB_ERREUR"
+journaliser "Audit $1 terminé"
