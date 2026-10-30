@@ -19,3 +19,11 @@
 [2026-10-30 16:45:45] Execution du script
 [2026-10-30 17:07:50] Execution du script
 [2026-10-30 17:07:50] Erreur : fichier targets.conf introuvable
+[2026-10-30 17:37:19] Execution du script
+[2026-10-30 17:37:19] Audit système terminé
+[2026-10-30 17:37:29] Tests réseau terminés. Résultats : 1 OK, 1 Échec
+[2026-10-30 17:37:29] Audit sécurité terminé
+[2026-10-30 17:37:29] Résumé ajouté au rapport
+[2026-10-30 17:37:29] Rapport HTML créé : audit_2026-10-30_17-37-19.html
+[2026-10-30 17:37:29] Archive créée : audit_2026-10-30_17-37-19.tar.gz
+[2026-10-30 17:37:29] Audit --all terminé

@@ -50,6 +50,8 @@ afficher_aide() {
     echo "--security contrôles de sécurité"
     echo "--all      les trois audits"
     echo "--help     cette aide"
+    echo "--interactive menu interactif"
+    echo "--html     génère un rapport HTML"
 }
 
 audit_systeme() {
@@ -126,6 +128,69 @@ fi
 
 journaliser "Execution du script"
 
+generer_html() {
+    HTML="$DIR/reports/audit_$DATE.html"
+    {
+        echo "<html>"
+        echo "<head>"
+        echo "<meta charset='UTF-8'>"
+        echo "<title>Rapport d'audit</title>"
+        echo "</head>"
+        echo "<body>"
+        echo "<h1>Rapport d'audit</h1>"
+        echo "<pre>"
+        cat "$RAPPORT"
+        echo "</pre>"
+        echo "</body>"
+        echo "</html>"
+    } > "$HTML"
+    journaliser "Rapport HTML créé : $(basename "$HTML")"
+}
+
+menu_interactif() {
+    while true
+    do
+        echo
+        echo "===== MENU AUDIT ====="
+        echo "1 - Audit système"
+        echo "2 - Audit réseau"
+        echo "3 - Audit sécurité"
+        echo "4 - Audit complet"
+        echo "5 - Quitter"
+        echo
+
+        read -p "Votre choix : " choix
+
+        case "$choix" in
+            1)
+                ecrire_entete
+                audit_systeme
+                ;;
+            2)
+                ecrire_entete
+                audit_reseau
+                ;;
+            3)
+                ecrire_entete
+                audit_securite
+                ;;
+            4)
+                ecrire_entete
+                audit_systeme
+                audit_reseau
+                audit_securite
+                ;;
+            5)
+                echo "Au revoir."
+                break
+                ;;
+            *)
+                echo "Choix invalide."
+                ;;
+        esac
+    done
+}
+
 case "$1" in
     --system)
         ecrire_entete
@@ -149,6 +214,19 @@ case "$1" in
         afficher_aide
         exit 0;
         ;;
+    --interactive)
+        menu_interactif
+        exit 0
+        ;;
+    --html)
+        ecrire_entete
+        audit_systeme
+        audit_reseau
+        audit_securite
+        ecrire_resume
+        generer_html
+        exit 0
+        ;;
     *)
         echo "Option inconnue : $1"
         afficher_aide
@@ -157,6 +235,7 @@ case "$1" in
 esac
 
 ecrire_resume
+generer_html
 archiver_rapport
 echo
 echo "Rapport créé : $RAPPORT"
